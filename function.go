@@ -37,6 +37,7 @@ var urlList = []string{
 	"https://www.joshwcomeau.com/rss.xml",
 	"https://www.publickey1.jp/atom.xml",
 	"https://www.totaltypescript.com/rss.xml",
+	"https://vercel.com/atom",
 }
 
 func SummarizeFeed(w http.ResponseWriter, r *http.Request) {
