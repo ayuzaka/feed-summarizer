@@ -1,16 +1,21 @@
-package function
+package function_test
 
 import (
+	"net/http"
 	"net/http/httptest"
 	"testing"
+
+	function "github.com/ayuzaka/feed-summarizer"
 )
 
 func TestSummarizeFeed(t *testing.T) {
-	req := httptest.NewRequest("GET", "/", nil)
+	t.Parallel()
+
+	req := httptest.NewRequest(http.MethodGet, "/", nil)
 	req.Header.Add("Content-Type", "application/json")
 
 	rr := httptest.NewRecorder()
-	SummarizeFeed(rr, req)
+	function.SummarizeFeed(rr, req)
 
 	want := "Sent Successfully!!"
 	if got := rr.Body.String(); got != want {

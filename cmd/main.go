@@ -4,9 +4,8 @@ import (
 	"log"
 	"os"
 
-	_ "github.com/ayuzaka/feed-summarizer"
-
 	"github.com/GoogleCloudPlatform/functions-framework-go/funcframework"
+	_ "github.com/ayuzaka/feed-summarizer"
 )
 
 func main() {
