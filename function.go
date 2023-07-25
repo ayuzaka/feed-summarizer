@@ -50,7 +50,7 @@ func SummarizeFeed(w http.ResponseWriter, _ *http.Request) {
 	var body string
 
 	for _, entry := range entries {
-		body += fmt.Sprintf("%s（%s）\n%s\n%s\n-----------------\n\n", entry.Title, entry.Published.Format("2006-01-02 15:04"), entry.URL, entry.Description)
+		body += fmt.Sprintf("%s（%s）\n%s\n-----------------\n\n", entry.Title, entry.Published.Format("2006-01-02 15:04"), entry.URL)
 	}
 
 	err := mail.SendMail(subject, body)

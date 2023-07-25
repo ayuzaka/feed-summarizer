@@ -37,6 +37,9 @@ func SendMail(subject, body string) error {
 	auth := smtp.PlainAuth("", from.Address, password, host)
 
 	err := smtp.SendMail(address, auth, from.Address, []string{to.Address}, msg.Bytes())
+	if err != nil {
+		return fmt.Errorf("failed to send mail: %w", err)
+	}
 
-	return fmt.Errorf("failed to send mail: %w", err)
+	return nil
 }

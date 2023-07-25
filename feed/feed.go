@@ -9,10 +9,9 @@ import (
 )
 
 type Entry struct {
-	Title       string
-	URL         string
-	Description string
-	Published   *time.Time
+	Title     string
+	URL       string
+	Published *time.Time
 }
 
 func parseEntries(url string) ([]Entry, error) {
@@ -33,10 +32,9 @@ func parseEntries(url string) ([]Entry, error) {
 		duration := now.Sub(*item.PublishedParsed)
 		if duration.Hours() < INTERVAL {
 			entries = append(entries, Entry{
-				Title:       item.Title,
-				URL:         item.Link,
-				Description: item.Description,
-				Published:   item.PublishedParsed,
+				Title:     item.Title,
+				URL:       item.Link,
+				Published: item.PublishedParsed,
 			})
 		}
 	}
