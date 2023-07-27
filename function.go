@@ -16,7 +16,7 @@ func init() {
 }
 
 func SummarizeFeed(w http.ResponseWriter, _ *http.Request) {
-	content, err := os.ReadFile("feeds.txt")
+	content, err := os.ReadFile(os.Getenv("SOURCE_DIR") + "feeds.txt")
 	if err != nil {
 		panic(err)
 	}
