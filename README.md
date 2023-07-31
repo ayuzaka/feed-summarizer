@@ -4,12 +4,6 @@ Feed Summarizer sends you a daily email notification summarizing all the updates
 
 ## Development
 
-Create urlList file for local:
-
-```sh
-touch urlList.txt
-```
-
 To start the development process, run the main program using the following command in your terminal:
 
 ```sh

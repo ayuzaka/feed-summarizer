@@ -16,9 +16,6 @@ jobs:
     steps:
       - uses: "actions/checkout@v3"
 
-      - name: "Create file from variables"
-        run: echo "${{ vars.URL_LIST }}" > feeds.txt
-
       - id: "auth"
         uses: "google-github-actions/auth@v1"
         with:
