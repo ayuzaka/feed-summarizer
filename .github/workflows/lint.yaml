@@ -22,3 +22,6 @@ jobs:
           version: v1.53
 
           only-new-issues: true
+
+      - name: test
+        run: go test -v ./...
