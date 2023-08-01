@@ -3,8 +3,6 @@ package function
 import (
 	"fmt"
 	"net/http"
-	"os"
-	"strings"
 
 	"github.com/GoogleCloudPlatform/functions-framework-go/functions"
 	"github.com/ayuzaka/feed-summarizer/feed"
@@ -15,15 +13,16 @@ func init() {
 	functions.HTTP("SummarizeFeed", SummarizeFeed)
 }
 
-func SummarizeFeed(w http.ResponseWriter, _ *http.Request) {
-	content, err := os.ReadFile(os.Getenv("SOURCE_DIR") + "feeds.txt")
+func SummarizeFeed(w http.ResponseWriter, r *http.Request) {
+	url := "https://gist.githubusercontent.com/ayuzaka/e61d8176572eef041c41262d4c041c89/raw"
+
+	urlList, err := feed.FetchURLList(r.Context(), url)
 	if err != nil {
 		panic(err)
 	}
 
-	urlList := strings.Split(string(content), "\n")
-
 	entries := feed.FindEntries(urlList)
+
 	if len(entries) == 0 {
 		return
 	}
@@ -37,6 +36,7 @@ func SummarizeFeed(w http.ResponseWriter, _ *http.Request) {
 	}
 
 	err = mail.SendMail(subject, body)
+
 	if err != nil {
 		panic(err)
 	}
